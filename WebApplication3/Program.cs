@@ -2,8 +2,10 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using WebApplication3.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,7 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
             .AddMicrosoftGraph(builder.Configuration.GetSection("MicrosoftGraph"))
             .AddInMemoryTokenCaches()
-            .AddDownstreamApi("DownstreamApi",builder.Configuration.GetSection("DownstreamApi"))
+            .AddDownstreamApi("DownstreamApi", builder.Configuration.GetSection("DownstreamApi"))
             .AddInMemoryTokenCaches();
 
 builder.Services.AddAuthorization(options =>
@@ -25,6 +27,14 @@ builder.Services.AddAuthorization(options =>
 });
 builder.Services.AddRazorPages()
     .AddMicrosoftIdentityUI();
+
+
+//Datenbank
+builder.Services.AddDbContext<ReminderContext>(options =>
+{  
+    options.UseSqlServer("")
+});
+
 
 var app = builder.Build();
 
@@ -46,5 +56,5 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapControllers();
-//Testcomment
+
 app.Run();

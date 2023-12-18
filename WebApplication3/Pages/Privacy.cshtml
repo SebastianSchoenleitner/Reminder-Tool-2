@@ -1,8 +1,78 @@
 ﻿@page
 @model PrivacyModel
-@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div style="background-color:lightgray; display:flex";  >
+    <div style="width:40%; border:solid; border-width:2px; margin:10px ">
+        <div >
+            <label id="lbl_name" for="tb_name" style="margin-left:10%; margin-top:2.5% ">Titel:</label>
+            <input type="text" id="tb_name" placeholder="Titel des Reminders" />
+            <br />
+            <br />
+            <label id="lbl_date" for="dp_date" style="margin-left:10%">Datum:</label>
+            <input type="date" id="dp_date" />
+        </div>
+    
+    <br />
+   
+    <input type="radio" id="rb_oneReminder" style="margin-left:15px"/>
+    <label id="lbl_one" for="rb_oneReminder">einmal erinnern</label>
+    <br />
+        <input type="radio" id="rb_moreReminder" style="margin-left:15px" />
+    <label id="lbl_more" for="rb_moreReminder">mehrmals erinnern</label>
+        <hr style="margin-left:10px; margin-right:10px" />
+        <input type="radio" id="rb_oncePerWeek" style="margin-left:15px" />
+        <label id="lbl_one" for="rb_oncePerWeek">wöchentlich</label>
+        <br />
+        <input type="radio" id="rb_oncePerMonth" style="margin-left:15px" />
+        <label id="lbl_one" for="rb_oncePerMonth">monatlich</label>
+        <br />
+        <input type="radio" id="rb_oncePerYear" style="margin-left:15px" />
+        <label id="lbl_one" for="rb_oncePerYear">jährlich</label>
+        <br />
+        <input type="radio" id="rb_oncePerQuarter" style="margin-left:15px" />
+        <label id="lbl_one" for="rb_oncePerQuarter">pro Quartal</label>
+        <br />
+        <input type="radio" id="rb_any" style="margin-left:15px" />
+        <label id="lbl_one" for="rb_any">beliebig</label>
+        <label>alle</label>
+        
+    </div>
+    <div style="flex:1; background-color:lightblue ; place-content:center; border-style:solid; border-width:2px; margin:10px ">
+        <h2 style="text-align:center"> Art der Benachrichtigung</h2>
+        
+            
+
+
+            <input type="checkbox" for="lbl_e" id="cb_email" value="per Email" />
+            <label id="lbl_e">per Email</label>
+            <br />
+
+
+            <input type="checkbox" id="cb_td" />
+            <label for="cb_td">per Teams-Direktnachricht</label>
+            <br />
+
+            <input type="checkbox" id="cb_tc" />
+            <label for="cb_tc">per Teams-Channel</label>
+            <br />
+
+            <input type="checkbox" id="cb_k" />
+            <label for="cb_k">per Kalender</label>
+            <br />
+            <hr />
+            <label>Email-Adresse:</label>
+            <input type="text" placeholder="Email-Adresse eingeben" />
+            <hr />
+            <input type="button" style="background-color:red; color:antiquewhite; margin-inline:5px  " value="Benutzer hinzufuegen" />
+       
+    </div>
+    <br />
+   
+</div>
+<div>
+    <label> Beschreibung</label>
+    <textarea style="width:500px; height:300px"></textarea>
+</div>
+
+

@@ -31,8 +31,8 @@ builder.Services.AddRazorPages()
 
 //Datenbank
 builder.Services.AddDbContext<ReminderContext>(options =>
-{  
-    options.UseSqlServer("")
+{
+    options.UseSqlServer("Server=DESKTOP-4LFOES7\\REMINDERTOOLSQL; Database=ReminderDB; Trusted_Connection=True;TrustServerCertificate=True;");
 });
 
 

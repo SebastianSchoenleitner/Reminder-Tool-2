@@ -20,6 +20,7 @@
     <PackageReference Include="Microsoft.Identity.Web.DownstreamApi" Version="2.13.1" />
     <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" Version="2.13.1" />
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="2.13.1" />
+    <PackageReference Include="Microsoft.NETCore.App" Version="2.2.8" />
   </ItemGroup>
 
 </Project>

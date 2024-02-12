@@ -7,8 +7,8 @@ namespace WebApplication3.SendingEmails
     {
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            var mail = ""; //Bot E-Mail 
-            var pw = ""; //Bot Passwort
+            var mail = "ReminderBot@outlook.de"; //Bot E-Mail 
+            var pw = "BotReminder"; //Bot Passwort
 
             var client = new SmtpClient("smtp-mail.outlook.com", 587)
             { 

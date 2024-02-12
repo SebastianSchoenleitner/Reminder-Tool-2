@@ -4,6 +4,7 @@ using Microsoft.Identity.Web;
 using System.Net;
 using Microsoft.Graph;
 using Microsoft.Identity.Abstractions;
+using Microsoft.AspNetCore.Authentication;
 
 namespace WebApplication3.Pages
 {
@@ -24,6 +25,9 @@ namespace WebApplication3.Pages
 
         public async Task OnGet()
         {
+            
+
+
             var user = await _graphServiceClient.Me.Request().GetAsync();;
             ViewData["GraphApiResult"] = user.DisplayName;;
             using var response = await _downstreamApi.CallApiForUserAsync("DownstreamApi").ConfigureAwait(false);;
@@ -37,7 +41,7 @@ if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 var error = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 throw new HttpRequestException($"Invalid status code in the HttpResponseMessage: {response.StatusCode}: {error}");
             };
-
+           
         }
     }
 }

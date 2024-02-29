@@ -7,35 +7,73 @@ export default function CreateReminder() {
     let navigate = useNavigate();
     const [titleInput, setTitleInput] = useState("");
     const [dateInput, setDateInput] = useState("");
-    const [isOnceReminded, setIsOnceReminded] = useState("");
-    const [isMoreReminded, setIsMoreReminded] = useState("");
-    const [isWeeklyReminded, setIsWeeklyReminded] = useState("");
-    const [isMonthlyReminded, setIsMonthlyReminded] = useState("");
-    const [isYearlyReminded, setIsYearlyReminded] = useState("");
-    const [isQuartalyReminded, setIsQuartalyReminded] = useState("");
-    const [isAnyhowReminded, setIsAnyhowReminded] = useState("");
-    const [isPerEmail, setIsPerEmail] = useState("");
-    const [isPerTd, setIsPerTd] = useState("");
-    const [isPerTC, setIsPerTC] = useState("");
-    const [isPerK, setIsPerK] = useState("");
+    const [isOnceReminded, setIsOnceReminded] = useState(false);
+    const [isMoreReminded, setIsMoreReminded] = useState(false);
+    const [isWeeklyReminded, setIsWeeklyReminded] = useState(false);
+    const [isMonthlyReminded, setIsMonthlyReminded] = useState(false);
+    const [isYearlyReminded, setIsYearlyReminded] = useState(false);
+    const [isQuartalyReminded, setIsQuartalyReminded] = useState(false);
+    const [isAnyhowReminded, setIsAnyhowReminded] = useState(false);
+    const [isPerEmail, setIsPerEmail] = useState(false);
+    const [isPerTd, setIsPerTd] = useState(false);
+    const [isPerTC, setIsPerTC] = useState(false);
+    const [isPerK, setIsPerK] = useState(false);
     const [emailInput, setEmailInput] = useState("");
+    const [descriptionInput, setDescriptionInput] = useState("");
 
 
 
     const inputChangetitle = (event) => { setTitleInput(event.target.value) };
     const inputChangeDate = (event) => { setDateInput(event.target.value) };
-    const inputChangeOnceReminded = (event) => { setIsOnceReminded(event.target.value) };
-    const inputChangeMoreReminded = (event) => { setIsMoreReminded(event.target.value) };
-    const inputChangeWeeklyReminded = (event) => { setIsWeeklyReminded(event.target.value) };
-    const inputChangeMonthlyReminded = (event) => { setIsMonthlyReminded(event.target.value) };
-    const inputChangeYearlyReminded = (event) => { setIsYearlyReminded(event.target.value) };
-    const inputChangeQuartalyReminded = (event) => { setIsQuartalyReminded(event.target.value) };
-    const inputChangeAnyhowReminded = (event) => { setIsAnyhowReminded(event.target.value) };
-    const inputChangePerEmail = (event) => { setIsPerEmail(event.target.value) };
-    const inputChangePerTd = (event) => { setIsPerTd(event.target.value) };
-    const inputChangePerTC = (event) => { setIsPerTC(event.target.value) };
-    const inputChangePerK = (event) => { setIsPerTC(event.target.value) };
+    const inputChangeOnceReminded = (event) => {
+        setIsOnceReminded(event.target.checked);
+        setIsMoreReminded(!event.target.checked);
+    };
+    const inputChangeMoreReminded = (event) => {
+        setIsMoreReminded(event.target.checked);
+        setIsOnceReminded(!event.target.checked);
+    };
+    const inputChangeWeeklyReminded = (event) => {
+        setIsWeeklyReminded(event.target.checked);
+        setIsMonthlyReminded(!event.target.checked);
+        setIsYearlyReminded(!event.target.checked);
+        setIsQuartalyReminded(!event.target.checked);
+        setIsAnyhowReminded(!event.target.checked);
+    };
+    const inputChangeMonthlyReminded = (event) => {
+        setIsWeeklyReminded(!event.target.checked);
+        setIsMonthlyReminded(event.target.checked);
+        setIsYearlyReminded(!event.target.checked);
+        setIsQuartalyReminded(!event.target.checked);
+        setIsAnyhowReminded(!event.target.checked);
+    };
+    const inputChangeYearlyReminded = (event) => {
+        setIsWeeklyReminded(!event.target.checked);
+        setIsMonthlyReminded(!event.target.checked);
+        setIsYearlyReminded(event.target.checked);
+        setIsQuartalyReminded(!event.target.checked);
+        setIsAnyhowReminded(!event.target.checked);
+    };
+    const inputChangeQuartalyReminded = (event) => {
+        setIsWeeklyReminded(!event.target.checked);
+        setIsMonthlyReminded(!event.target.checked);
+        setIsYearlyReminded(!event.target.checked);
+        setIsQuartalyReminded(event.target.checked);
+        setIsAnyhowReminded(!event.target.checked);
+    };
+    const inputChangeAnyhowReminded = (event) => {
+        setIsWeeklyReminded(!event.target.checked);
+        setIsMonthlyReminded(!event.target.checked);
+        setIsYearlyReminded(!event.target.checked);
+        setIsQuartalyReminded(!event.target.checked);
+        setIsAnyhowReminded(event.target.checked);
+    };
+    const inputChangePerEmail = (event) => { setIsPerEmail(event.target.checked) };
+    const inputChangePerTd = (event) => { setIsPerTd(event.target.checked) };
+    const inputChangePerTC = (event) => { setIsPerTC(event.target.checked) };
+    const inputChangePerK = (event) => { setIsPerK(event.target.checked) };
     const inputChangeEmail = (event) => { setEmailInput(event.target.value) };
+    const inputChangeDescription = (event) => { setDescriptionInput(event.target.value) };
 
 
     const routeChange = () => {
@@ -57,9 +95,11 @@ export default function CreateReminder() {
             perTd: isPerTd,
             perTc: isPerTC,
             perK: isPerK,
+            email: emailInput,
+            description: descriptionInput
         }
-        JSON.parse(wert);
-
+        Werte = JSON.stringify(wert);
+        alert(Werte);
     };
 
 
@@ -76,38 +116,38 @@ export default function CreateReminder() {
                     </div>
                     <br></br>
                     <label>einmal erinnern</label>
-                    <input type="radio" value={isOnceReminded} onChange={inputChangeOnceReminded }></input>
+                    <input type="radio" checked={isOnceReminded} onChange={inputChangeOnceReminded}></input>
                     <br></br>
                     <label>mehrmals erinnern</label>
-                    <input type="radio" value={isMoreReminded} onChange={inputChangeMoreReminded}></input>
+                    <input type="radio" checked={isMoreReminded} onChange={inputChangeMoreReminded}></input>
                     <hr></hr>
-                    <input type="radio" value={isWeeklyReminded} onChange={inputChangeWeeklyReminded}></input>
+                    <input type="radio" checked={isWeeklyReminded} onChange={inputChangeWeeklyReminded}></input>
                     <label>wöchentlich</label>
                     <br></br>
-                    <input type="radio" value={isMonthlyReminded} onChange={inputChangeMonthlyReminded}></input>
+                    <input type="radio" checked={isMonthlyReminded} onChange={inputChangeMonthlyReminded}></input>
                     <label>monatlich</label>
                     <br></br>
-                    <input type="radio" value={isYearlyReminded} onChange={inputChangeYearlyReminded }></input>
+                    <input type="radio" checked={isYearlyReminded} onChange={inputChangeYearlyReminded}></input>
                     <label>jährlich</label>
                     <br></br>
-                    <input type="radio" value={isQuartalyReminded}></input>
+                    <input type="radio" checked={isQuartalyReminded} onChange={inputChangeQuartalyReminded}></input>
                     <label>pro Quartal</label>
                     <br></br>
-                    <input type="radio" value={isAnyhowReminded}></input>
+                    <input type="radio" checked={isAnyhowReminded} onChange={inputChangeAnyhowReminded}></input>
                     <label>beliebig</label>
                 </div>
                 <div>
                     <h2>Art der Benachrichtigung</h2>
-                    <input type="checkbox" value={isPerEmail} onChange={inputChangePerEmail}></input>
+                    <input type="checkbox" checked={isPerEmail} onChange={inputChangePerEmail}></input>
                     <label>per Email</label>
                     <br></br>
-                    <input type="checkbox" value={isPerTd} onChange={inputChangePerTd}></input>
+                    <input type="checkbox" checked={isPerTd} onChange={inputChangePerTd}></input>
                     <label>per Teams-Direktnachricht</label>
                     <br></br>
-                    <input type="checkbox" value={isPerTC} onChange={inputChangePerTC}></input>
+                    <input type="checkbox" checked={isPerTC} onChange={inputChangePerTC}></input>
                     <label>per Teams-Channel</label>
                     <br></br>
-                    <input type="checkbox" value={isPerK} onChange={inputChangePerK}></input>
+                    <input type="checkbox" checked={isPerK} onChange={inputChangePerK}></input>
                     <label>per Kalender</label>
                     <br></br>
                     <input type="text" value={emailInput} onChange={inputChangeEmail}></input>
@@ -123,7 +163,7 @@ export default function CreateReminder() {
                         <label>Beschreibung</label>
                     </div>
                 </div>
-                <textarea></textarea>
+                <textarea type="text" value={descriptionInput} onChange={inputChangeDescription}></textarea>
             </div>
             <div>
                 <div></div>
@@ -133,7 +173,7 @@ export default function CreateReminder() {
                     }}>zurück</button>
                     <button onClick={() => {
                         saveAsText();
-                    } }>speichern</button>
+                    }}>speichern</button>
                 </div>
             </div>
         </div>

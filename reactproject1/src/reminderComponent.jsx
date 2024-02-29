@@ -1,7 +1,7 @@
 import REACT from 'react';
 
 
-export default function labelbox{
+export default function labelbox(){
 
     return (
         <div>

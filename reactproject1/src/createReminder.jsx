@@ -2,8 +2,11 @@ import React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 
-export default function CreateReminder() {
-    let Werte;
+
+const jsonList = [];
+
+const CreateReminder = () => {
+    let werte;
     let navigate = useNavigate();
     const [titleInput, setTitleInput] = useState("");
     const [dateInput, setDateInput] = useState("");
@@ -98,86 +101,106 @@ export default function CreateReminder() {
             email: emailInput,
             description: descriptionInput
         }
-        Werte = JSON.stringify(wert);
-        alert(Werte);
+        jsonList.push(wert);
+
+        werte = JSON.stringify(wert);
+        /*alert(werte);*/
     };
 
 
     return (
-        <div>
-            <div>
-                <div>
-                    <div>
-                        <label>Title:</label>
-                        <input type="text" value={titleInput} onChange={inputChangetitle} ></input>
-                        <br></br>
-                        <label>Date:</label>
-                        <input type="date" value={dateInput} onChange={inputChangeDate}></input>
-                    </div>
-                    <br></br>
-                    <label>einmal erinnern</label>
-                    <input type="radio" checked={isOnceReminded} onChange={inputChangeOnceReminded}></input>
-                    <br></br>
-                    <label>mehrmals erinnern</label>
-                    <input type="radio" checked={isMoreReminded} onChange={inputChangeMoreReminded}></input>
-                    <hr></hr>
-                    <input type="radio" checked={isWeeklyReminded} onChange={inputChangeWeeklyReminded}></input>
-                    <label>wöchentlich</label>
-                    <br></br>
-                    <input type="radio" checked={isMonthlyReminded} onChange={inputChangeMonthlyReminded}></input>
-                    <label>monatlich</label>
-                    <br></br>
-                    <input type="radio" checked={isYearlyReminded} onChange={inputChangeYearlyReminded}></input>
-                    <label>jährlich</label>
-                    <br></br>
-                    <input type="radio" checked={isQuartalyReminded} onChange={inputChangeQuartalyReminded}></input>
-                    <label>pro Quartal</label>
-                    <br></br>
-                    <input type="radio" checked={isAnyhowReminded} onChange={inputChangeAnyhowReminded}></input>
-                    <label>beliebig</label>
-                </div>
-                <div>
-                    <h2>Art der Benachrichtigung</h2>
-                    <input type="checkbox" checked={isPerEmail} onChange={inputChangePerEmail}></input>
-                    <label>per Email</label>
-                    <br></br>
-                    <input type="checkbox" checked={isPerTd} onChange={inputChangePerTd}></input>
-                    <label>per Teams-Direktnachricht</label>
-                    <br></br>
-                    <input type="checkbox" checked={isPerTC} onChange={inputChangePerTC}></input>
-                    <label>per Teams-Channel</label>
-                    <br></br>
-                    <input type="checkbox" checked={isPerK} onChange={inputChangePerK}></input>
-                    <label>per Kalender</label>
-                    <br></br>
-                    <input type="text" value={emailInput} onChange={inputChangeEmail}></input>
-                    <hr></hr>
 
-                </div>
-                <br></br>
-            </div>
-            <div>
-                <div>
-                    <div></div>
-                    <div>
-                        <label>Beschreibung</label>
+        <body style={{ backgroundColor: "lightgray" }}>
+
+            <div style={{ margin: "50px", backgroundColor: "white" }}>
+                <div style={{ margin: "50px", backgroundColor: "white", display: "flex" }}>
+                    <div style={{ width: "40%", border: "solid", borderWidth: "2px", margin: "10px", flex: "0 0 40%" }}>
+                        <div>
+                            <label style={{ marginLeft: "10%", marginTop: "2.5%" }}>Title:</label>
+                            <input type="text" value={titleInput} onChange={inputChangetitle} placeholder="Titel" ></input>
+                            <br></br>
+                            <label style={{ marginLeft: "10%" }}>Date:</label>
+                            <input type="date" value={dateInput} onChange={inputChangeDate}></input>
+                        </div>
+                        <br></br>
+                        <label style={{ marginLeft: "15px" }}>einmal erinnern</label>
+                        <input type="radio" checked={isOnceReminded} onChange={inputChangeOnceReminded}></input>
+                        <br></br>
+                        <label style={{ marginLeft: "15px" }}>mehrmals erinnern</label>
+                        <input type="radio" checked={isMoreReminded} onChange={inputChangeMoreReminded}></input>
+                        <hr></hr>
+                        <input type="radio" checked={isWeeklyReminded} onChange={inputChangeWeeklyReminded}></input>
+                        <label style={{ marginLeft: "15px" }}>wöchentlich</label>
+                        <br></br>
+                        <input type="radio" checked={isMonthlyReminded} onChange={inputChangeMonthlyReminded}></input>
+                        <label style={{ marginLeft: "15px" }}>monatlich</label>
+                        <br></br>
+                        <input type="radio" checked={isYearlyReminded} onChange={inputChangeYearlyReminded}></input>
+                        <label style={{ marginLeft: "15px" }}>jährlich</label>
+                        <br></br>
+                        <input type="radio" checked={isQuartalyReminded} onChange={inputChangeQuartalyReminded}></input>
+                        <label style={{ marginLeft: "15px" }}>pro Quartal</label>
+                        <br></br>
+                        <input type="radio" checked={isAnyhowReminded} onChange={inputChangeAnyhowReminded}></input>
+                        <label style={{ marginLeft: "15px" }}>beliebig</label>
+                    </div>
+
+                    <div style={{ flex: "1", backgroundColor: "white", placeContent: "center", borderStyle: "solid", borderWidth: "2px", margin: "10px" }}>
+                        <h2 style={{ textAlign: "center" }}>Art der Benachrichtigung</h2>
+                        <input type="checkbox" checked={isPerEmail} onChange={inputChangePerEmail}></input>
+                        <label>per Email</label>
+                        <br></br>
+                        <input type="checkbox" checked={isPerTd} onChange={inputChangePerTd}></input>
+                        <label>per Teams-Direktnachricht</label>
+                        <br></br>
+                        <input type="checkbox" checked={isPerTC} onChange={inputChangePerTC}></input>
+                        <label>per Teams-Channel</label>
+                        <br></br>
+                        <input type="checkbox" checked={isPerK} onChange={inputChangePerK}></input>
+                        <label>per Kalender</label>
+                        <br></br>
+                        {isPerEmail && (
+                            <div>
+                                <hr></hr>
+                                <label>Email-Addresse: </label>
+                                <input type="text" value={emailInput} onChange={inputChangeEmail}></input>
+                            </div>
+
+                        )}
+
+                        <hr></hr>
+
                     </div>
                 </div>
-                <textarea type="text" value={descriptionInput} onChange={inputChangeDescription}></textarea>
-            </div>
-            <div>
-                <div></div>
-                <div>
-                    <button onClick={() => {
-                        routeChange();
-                    }}>zurück</button>
-                    <button onClick={() => {
-                        saveAsText();
-                    }}>speichern</button>
+                <div style={{ backgroundColor: "white", alignContent: "center", display: "flex" }}>
+                    <div style={{ height: "300px" }}>
+                        <div style={{ height: "150px" }}></div>
+                        <div>
+                            <label>Beschreibung</label>
+                        </div>
+                    </div>
+                    <textarea style={{ width: "70%", height: "300px", margin: "10px", marginRight: "30px" }} type="text" value={descriptionInput} onChange={inputChangeDescription}></textarea>
+                </div>
+                <div style={{ backgroundColor: "lightgrey", display: "flex" }}>
+                    <div style={{ width: "40%" }}></div>
+                    <div >
+                        <button style={{ backgroundColor: "red", color: "black", marginInline: "5px", height: "30px", width: "70px" }} onClick={() => {
+                            routeChange();
+                        }}>zurück</button>
+                        <button style={{ backgroundColor: "red", color: "black", marginInline: "5px", height: "30px", width: "70px" }} onClick={() => {
+                            saveAsText();
+                        }}>speichern</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </body>
     );
 
+
+
+
+
 }
+export const getJsonList = () => jsonList;
+export default CreateReminder;
 
